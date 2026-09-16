@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Users CRUD</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Users CRUD</h1>
+
+      <form id="user-form" class="card">
+        <input type="hidden" id="user-id" />
+        <div class="grid">
+          <label>
+            First name
+            <input id="first_name" name="first_name" type="text" required />
+          </label>
+          <label>
+            Last name
+            <input id="last_name" name="last_name" type="text" required />
+          </label>
+          <label>
+            Phone
+            <input id="phone" name="phone" type="text" required />
+          </label>
+          <label>
+            Email
+            <input id="email" name="email" type="email" required />
+          </label>
+          <label>
+            Password
+            <input id="password" name="password" type="password" required />
+          </label>
+        </div>
+
+        <div class="actions">
+          <button type="submit" id="save-button">Create user</button>
+          <button type="button" id="cancel-button" hidden>Cancel edit</button>
+        </div>
+      </form>
+
+      <section class="card">
+        <h2>Users</h2>
+        <p id="status"></p>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>First name</th>
+              <th>Last name</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Password</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="users-body"></tbody>
+        </table>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
