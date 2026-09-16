@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
+require("./instrument.js");
 
+const Sentry = require("@sentry/node");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -97,6 +99,19 @@ app.delete('/api/users/:id', (req, res) => {
 
   users.splice(userIndex, 1);
   return res.status(204).send();
+});
+
+Sentry.setupExpressErrorHandler(app);
+
+app.use(function onError(err, req, res, next) {
+  // The error id is attached to `res.sentry` to be returned
+  // and optionally displayed to the user for support.
+  res.statusCode = 500;
+  res.end(res.sentry + "\n");
+});
+
+app.get("/debug-sentry", function mainHandler(req, res) {
+  throw new Error("My first Sentry error!");
 });
 
 app.listen(PORT, () => {
